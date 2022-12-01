@@ -17,10 +17,10 @@ export const setdata = (payload)=>{
     }
 }
 
-export const fetchAndUpdate =()=>async(dispatch)=>{
+export const fetchAndUpdate =(page)=>async(dispatch)=>{
 try {
     dispatch(setloading());
-    let res = await fetch('https://nice-plum-dhole-gown.cyclic.app/todos');
+    let res = await fetch(`https://blue-mercury-3qiw.onrender.com/todos?_limit=5&_page=${page}`);
     let res2 = await res.json();
     dispatch(setdata(res2));
 } catch (error) {

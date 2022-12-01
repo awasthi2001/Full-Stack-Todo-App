@@ -46,11 +46,13 @@
 }
 #input{
   width: 300px;
-  height: 25px;
+  height: 30px;
   padding: 4px;
   border-radius: 5px;
-  margin: 15px;
-  border: 1px solid red;
+  text-size-adjust: 10px;
+  margin-right: 8px;
+  /* margin: 15px; */
+  border: 1.5px solid red;
 }
 #btn{
   padding: 5px;
@@ -62,7 +64,12 @@
   width: 85px;
   height: 40px;
   cursor: pointer;
+  margin-bottom: 1px;
   border-radius: 5px;
+}
+h1{
+  text-transform: capitalize;
+  color: #0d4f61;
 }
 #btn:hover{
   background-color: #282c34;
