@@ -17,7 +17,7 @@ export const setdata = (payload)=>{
     }
 }
 
-export const fetchAndUpdate =(data)=>async(dispatch)=>{
+export const fetchAndUpdate =()=>async(dispatch)=>{
 try {
     dispatch(setloading());
     let res = await fetch('https://nice-plum-dhole-gown.cyclic.app/todos');
