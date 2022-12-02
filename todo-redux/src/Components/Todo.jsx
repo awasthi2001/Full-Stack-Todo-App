@@ -16,7 +16,7 @@ console.log(totalCount)
     <div className='Container'>
       <h1>TODO APP</h1>
         <TodoInput page={page}/>
-        
+  
         {
           loading ? <img style={{width:'500px',marginLeft:'5px'}} src="https://miro.medium.com/max/1400/1*CsJ05WEGfunYMLGfsT2sXA.gif" alt="loading" />:
           data.map(({id,task,status})=>{

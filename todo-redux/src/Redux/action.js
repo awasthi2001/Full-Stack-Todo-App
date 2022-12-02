@@ -39,6 +39,23 @@ export const postData = (data,page)=>async(dispatch) => {
     }
    }
    
+export const ToggleData = (id,page,status)=>async(dispatch) => {
+    let obj = {
+        status : !status
+    }
+    try {
+       let res = await fetch(`https://blue-mercury-3qiw.onrender.com/todos/${id}`,{
+           method: 'PATCH',
+           body: JSON.stringify(obj),
+           headers: {
+                "Content-Type" : 'application/json',
+           },
+       })
+       dispatch(fetchAndUpdate(page))
+    } catch (error) {
+       console.log(error)
+    }
+   }
 export const DeleteData = (id,page)=>async(dispatch) => {
     try {
        let res = await fetch(`https://blue-mercury-3qiw.onrender.com/todos/${id}`,{
