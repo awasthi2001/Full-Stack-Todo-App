@@ -33,7 +33,7 @@ export const postData = (data,page)=>async(dispatch) => {
     }
    }
    
-   export const DeleteData = (id,page)=>async(dispatch) => {
+export const DeleteData = (id,page)=>async(dispatch) => {
     try {
        let res = await fetch(`https://blue-mercury-3qiw.onrender.com/todos/${id}`,{
            method: 'DELETE',
