@@ -10,13 +10,13 @@ export const TodoInput = ({page}) => {
   const handleInput = (e)=>{
     setvalue(e.target.value);
   }
-  const handleAdd = async()=>{
+  const handleAdd = ()=>{
     let todo = {
       status : false,
       task : value
     }
-     dispatch(postData(todo));
-     dispatch(fetchAndUpdate(page))
+     dispatch(postData(todo,page));
+     //dispatch(fetchAndUpdate(page))
   }
 
   return (

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAndUpdate } from '../Redux/action';
 import { TodoInput } from './TodoInput'
+import { TodoItems } from './TodoItems';
 
 export const Todo = () => {
   const[page,setPage] = useState(1);
@@ -15,7 +16,15 @@ export const Todo = () => {
     <div className='Container'>
       <h1>TODO APP</h1>
         <TodoInput page={page}/>
-
+        {
+          data.map(({id,task,status})=>{
+           return <TodoItems key={id} id={id} task={task} status={status} page={page}/>
+          })
+        }
+       
+        <button disabled={page==1} onClick={()=>setPage(page-1)}>Previous</button>
+        <button>{page}</button>
+        <button onClick={()=>setPage(page+1)}>Next</button>
     </div>
   )
 }

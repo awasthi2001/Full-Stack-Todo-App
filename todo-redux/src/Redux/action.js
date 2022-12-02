@@ -18,7 +18,7 @@ export const setdata = (payload)=>{
 }
 
 
-export const postData = (data)=>async() => {
+export const postData = (data,page)=>async(dispatch) => {
     try {
        let res = await fetch('https://blue-mercury-3qiw.onrender.com/todos',{
            method: 'POST',
@@ -27,12 +27,23 @@ export const postData = (data)=>async() => {
                 "Content-Type" : 'application/json',
            },
        })
+       dispatch(fetchAndUpdate(page))
     } catch (error) {
        console.log(error)
     }
    }
    
-
+   export const DeleteData = (id,page)=>async(dispatch) => {
+    try {
+       let res = await fetch(`https://blue-mercury-3qiw.onrender.com/todos/${id}`,{
+           method: 'DELETE',
+       })
+       dispatch(fetchAndUpdate(page));
+    } catch (error) {
+       console.log(error)
+    }
+   }
+   
 export const fetchAndUpdate =(page)=>async(dispatch)=>{
 try {
     dispatch(setloading());
