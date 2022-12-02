@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
-import { fetchAndUpdate } from '../Redux/action';
-import { postData } from '../Utility/postData';
+import { fetchAndUpdate, postData } from '../Redux/action';
+
 
 export const TodoInput = ({page}) => {
   const [value,setvalue] = useState('');
@@ -15,7 +15,7 @@ export const TodoInput = ({page}) => {
       status : false,
       task : value
     }
-    await postData(todo);
+     dispatch(postData(todo));
      dispatch(fetchAndUpdate(page))
   }
 
