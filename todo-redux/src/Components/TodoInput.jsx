@@ -5,7 +5,6 @@ import { fetchAndUpdate, postData } from '../Redux/action';
 
 export const TodoInput = ({page}) => {
   const [value,setvalue] = useState('');
-  console.log(value)
   let dispatch = useDispatch();
   const handleInput = (e)=>{
     setvalue(e.target.value);

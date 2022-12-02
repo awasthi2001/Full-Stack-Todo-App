@@ -1,4 +1,4 @@
-import { SET_DATA, SET_ERROR, SET_LOADING } from "./actionTypes"
+import { SET_DATA, SET_ERROR, SET_LOADING, SET_TOTAL_COUNT } from "./actionTypes"
 
 export const setloading = ()=>{
     return {
@@ -14,6 +14,12 @@ export const setdata = (payload)=>{
     return {
         type : SET_DATA,
         payload :payload
+    }
+}
+export const setTotalCount = (payload)=>{
+    return {
+        type : SET_TOTAL_COUNT,
+        payload: payload
     }
 }
 
@@ -49,6 +55,8 @@ try {
     dispatch(setloading());
     let res = await fetch(`https://blue-mercury-3qiw.onrender.com/todos?_limit=5&_page=${page}`);
     let res2 = await res.json();
+    let totalCount = res.headers.get('X-Total-Count')
+    dispatch(setTotalCount(totalCount))
     dispatch(setdata(res2));
 } catch (error) {
     dispatch(seterror);
