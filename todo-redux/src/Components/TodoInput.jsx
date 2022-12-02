@@ -10,11 +10,16 @@ export const TodoInput = ({page}) => {
     setvalue(e.target.value);
   }
   const handleAdd = ()=>{
-    let todo = {
-      status : false,
-      task : value
+    if(value==""){
+      alert("please enter the task")
+    }else{
+      let todo = {
+        status : false,
+        task : value
+      }
+       dispatch(postData(todo,page));
     }
-     dispatch(postData(todo,page));
+ 
      //dispatch(fetchAndUpdate(page))
   }
 

@@ -16,13 +16,15 @@ console.log(totalCount)
     <div className='Container'>
       <h1>TODO APP</h1>
         <TodoInput page={page}/>
-  
+        <div id='parentList'>
+        <h2 style={{ color: "teal" }}>TASKS</h2>
         {
-          loading ? <img style={{width:'500px',marginLeft:'5px'}} src="https://miro.medium.com/max/1400/1*CsJ05WEGfunYMLGfsT2sXA.gif" alt="loading" />:
+          loading ? <img style={{width:'400px',marginLeft:'-20px'}} src="https://miro.medium.com/max/1400/1*CsJ05WEGfunYMLGfsT2sXA.gif" alt="loading" />:
           data.map(({id,task,status})=>{
            return <TodoItems key={id} id={id} task={task} status={status} page={page}/>
           })
         }
+        </div>
      {
       loading ? "":  <><button disabled={page==1} onClick={()=>setPage(page-1)}>Previous</button>
       <button>{page}</button>

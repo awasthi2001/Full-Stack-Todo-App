@@ -5,11 +5,27 @@ import { DeleteData, ToggleData } from '../Redux/action';
 export const TodoItems = ({id,task,status,page}) => {
   const dispatch = useDispatch();
   return (
-     <div>
-    <h3>{task}</h3>
-    <span>{status?"completed":"Not completed"}</span>
-    <button onClick={()=>dispatch(DeleteData(id,page))}>delete</button>
-    <button onClick={()=>dispatch(ToggleData(id,page,status))}>Toggle</button>
+     <div id="childTodo">
+    <h3 style={{color:status?"green":"black"}}>{task}{status?" - Completed":" - Not Completed"}</h3>
+    <button style={{
+            margin: "5px",
+            borderRadius: "5px",
+            color: "white",
+            padding: "5px",
+            border: "none",
+            backgroundColor: "crimson",
+            cursor: "pointer"
+          }} onClick={()=>dispatch(DeleteData(id,page))}>delete</button>
+    <button  style={{
+            margin: "5px",
+            marginLeft: "30px",
+            borderRadius: "5px",
+            color: "white",
+            padding: "5px",
+            border: "none",
+            backgroundColor: status ? "red" : "green",
+            cursor: "pointer"
+          }} onClick={()=>dispatch(ToggleData(id,page,status))}>{status?"Not Done":"Done"}</button>
      </div>
   )
 }

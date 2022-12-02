@@ -78,3 +78,20 @@ h1{
   border: 1px solid red;
   outline: none;
 }
+#childTodo {
+  border: 1px solid crimson;
+  padding: 2px;
+  border-radius: 5px;
+  margin: 5px;
+  margin-left: 10px;
+}
+#parentList {
+  /* border: 1px solid red; */
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  padding: 15px;
+  width: 400px;
+  margin: 5px;
+  margin: auto;
+  margin-top: 15px;
+  border-radius: 5px;
+}
