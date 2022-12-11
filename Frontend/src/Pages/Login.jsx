@@ -57,7 +57,7 @@ export const Login = () => {
         description: "Something went wrong! please try again later",
         status: "error",
         duration: 9000,
-        isClosable: true,
+        isClosable: true, 
       });
     }
 
