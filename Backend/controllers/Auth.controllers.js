@@ -36,16 +36,18 @@ export const CreateUser = async(req,res)=>{
 
    export const handleLogin = async(req,res)=>{
     try {
-        console.log(req.body)
+        // console.log(req.body)
         let user = req.body;
         let check = await User.findOne({Email_Id:user.Email_Id});
+        // console.log(check._id);
         if(check){
             let password = user.Password;
             let check2 = bcryptjs.compareSync(password,check.Password);
             if(check2){ 
                 let token = jwt.sign({
                     Full_Name : user.Full_Name,
-                    Email_Id : user.Email_Id
+                    Email_Id : user.Email_Id,
+                    User_Id : check._id
                 },JWT_SECRET_KEY)
                 return res.status(200).send({
                     message : 'successfully logged in',
