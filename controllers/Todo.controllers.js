@@ -14,7 +14,8 @@ export const getAllTodo = async(req,res)=>{
     const limit = (req.query.limit) || length;
     data = await TodoModel.find({User_Id}).skip(page*limit).limit(limit)
     return res.status(200).send({
-        data : data
+        data : data,
+        count : length
     })
  } catch (error) {
    return res.status(500).send({
