@@ -26,7 +26,8 @@ export const setTotalCount = (payload)=>{
 
 export const postData = (data,page)=>async(dispatch) => {
     try {
-       let res = await fetch('https://blue-mercury-3qiw.onrender.com/todos',{
+       let res = await fetch('http://localhost:8080/todos',{
+        //    mode : 'cors',
            method: 'POST',
            body: JSON.stringify(data),
            headers: {
@@ -44,7 +45,7 @@ export const ToggleData = (id,page,status)=>async(dispatch) => {
         status : !status
     }
     try {
-       let res = await fetch(`https://blue-mercury-3qiw.onrender.com/todos/${id}`,{
+       let res = await fetch(`http://localhost:8080/todos/${id}`,{
            method: 'PATCH',
            body: JSON.stringify(obj),
            headers: {
@@ -56,11 +57,12 @@ export const ToggleData = (id,page,status)=>async(dispatch) => {
        console.log(error)
     }
    }
-export const DeleteData = (id,page)=>async(dispatch) => {
+export const DeleteData = (_id,page)=>async(dispatch) => {
     try {
-       let res = await fetch(`https://blue-mercury-3qiw.onrender.com/todos/${id}`,{
+       let res = await fetch(`http://localhost:8080/todos/${_id}`,{
            method: 'DELETE',
        })
+       
        dispatch(fetchAndUpdate(page));
     } catch (error) {
        console.log(error)
@@ -70,11 +72,13 @@ export const DeleteData = (id,page)=>async(dispatch) => {
 export const fetchAndUpdate =(page)=>async(dispatch)=>{
 try {
     dispatch(setloading());
-    let res = await fetch(`https://blue-mercury-3qiw.onrender.com/todos?_limit=5&_page=${page}`);
+
+   let UserToken =  localStorage.getItem('Usertoken')
+    let res = await fetch(`http://localhost:8080/todos/${UserToken}?limit=5&page=${page}`);
     let res2 = await res.json();
-    let totalCount = res.headers.get('X-Total-Count')
-    dispatch(setTotalCount(totalCount))
-    dispatch(setdata(res2));
+    // let totalCount = res.headers.get('X-Total-Count')
+    // dispatch(setTotalCount(totalCount))
+    dispatch(setdata(res2.data));
 } catch (error) {
     dispatch(seterror);
 }

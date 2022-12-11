@@ -3,7 +3,7 @@ import { AddTodo, getAllTodo, HandleDelete, HandlePatch } from "../controllers/T
 
 export const TodoRouter = Router();
 
-TodoRouter.get('/:User_id',getAllTodo)
+TodoRouter.get('/:token',getAllTodo)
 TodoRouter.post('/',AddTodo)
 TodoRouter.delete('/:_id',HandleDelete)
 TodoRouter.patch('/:_id',HandlePatch)

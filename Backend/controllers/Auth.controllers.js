@@ -51,7 +51,8 @@ export const CreateUser = async(req,res)=>{
                 },JWT_SECRET_KEY)
                 return res.status(200).send({
                     message : 'successfully logged in',
-                    token : token
+                    token : token,
+                    User_Id : check._id
                 })
             }else{
                 return res.status(400).send({

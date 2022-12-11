@@ -4,7 +4,7 @@ let initState = {
     loading : false,
     error : false,
     data : [],
-    totalCount: 0,
+    totalCount: 0
 }
 export const reduce = (state=initState,{type,payload}) => {
  switch (type){

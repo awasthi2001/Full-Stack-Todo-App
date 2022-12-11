@@ -9,13 +9,15 @@ export const TodoInput = ({page}) => {
   const handleInput = (e)=>{
     setvalue(e.target.value);
   }
+  let User_Id = localStorage.getItem('User_Id');
   const handleAdd = ()=>{
     if(value==""){
       alert("please enter the task")
     }else{
       let todo = {
         status : false,
-        task : value
+        task : value,
+        User_Id : User_Id
       }
        dispatch(postData(todo,page));
     }

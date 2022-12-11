@@ -1,18 +1,18 @@
 import {TodoModel} from '../Models/todo.model.js';
-
-
+import jwt from 'jsonwebtoken'
+import * as dotenv from 'dotenv'
+dotenv.config()
+const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY
 export const getAllTodo = async(req,res)=>{
  try {
-    let {User_id} = req.params;
-    console.log(User_id)
-    let data = await  TodoModel.find();
-    
-    const length = await TodoModel.find().count();
-   
+    let {token} = req.params;
+    let {User_Id} = jwt.verify(token,JWT_SECRET_KEY);
+    // console.log(User_Id)
+    let data = await  TodoModel.find({User_Id});
+    const length = await TodoModel.find({User_Id}).count();
     let page = (req.query.page) -1 || 0 ;
     const limit = (req.query.limit) || length;
-    data = await TodoModel.find({User_id}).skip(page*limit).limit(limit)
-
+    data = await TodoModel.find({User_Id}).skip(page*limit).limit(limit)
     return res.status(200).send({
         data : data
     })
@@ -56,7 +56,7 @@ export const AddTodo = async(req,res)=>{
         let todo = req.body;
        
         let createdtodo = await TodoModel.create(todo);
-        console.log(createdtodo)
+        // console.log(createdtodo)
         return res.status(201).send({
             message : 'successfully created',
             todo : createdtodo
