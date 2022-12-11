@@ -39,11 +39,9 @@ export const CreateUser = async(req,res)=>{
         console.log(req.body)
         let user = req.body;
         let check = await User.findOne({Email_Id:user.Email_Id});
-        console.log(check)
         if(check){
             let password = user.Password;
             let check2 = bcryptjs.compareSync(password,check.Password);
-            console.log(check2 +"line no.46");
             if(check2){ 
                 let token = jwt.sign({
                     Full_Name : user.Full_Name,

@@ -6,7 +6,7 @@ import { UserRouter } from "./routes/user.routes.js";
 const app = express();
 app.use(express.json())
 app.use('/auth',AuthRouter);
-// app.use('/user',UserRouter);
+app.use('/user',UserRouter);
 
 app.get('/',(req,res)=>{
     try {
@@ -23,9 +23,13 @@ app.get('/',(req,res)=>{
 
 
 
-app.listen(8080,async()=>{
+app.listen(8080,()=>{
     try {
-        await Connectdb();
+        Connectdb().then((res)=>{
+          console.log(res);
+        }).catch((err)=>{
+            console.log(err);
+        })
         console.log("listening to 8080")
     } catch (error) {
         console.log(error)
