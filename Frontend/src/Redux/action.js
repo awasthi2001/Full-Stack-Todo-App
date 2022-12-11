@@ -76,9 +76,7 @@ try {
    let UserToken =  localStorage.getItem('Usertoken')
     let res = await fetch(`https://mauve-seal-tie.cyclic.app/todos/${UserToken}?limit=5&page=${page}`);
     let res2 = await res.json();
-    let totalCount = res.headers.get('X-Total-Count')
-    console.log(totalCount);
-    // dispatch(setTotalCount(totalCount))
+    dispatch(setTotalCount(res2.count))
     dispatch(setdata(res2.data));
 } catch (error) {
     dispatch(seterror);
