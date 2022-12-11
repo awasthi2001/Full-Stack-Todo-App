@@ -5,6 +5,7 @@ import {
   InputGroup,
   InputRightElement,
   position,
+  Text,
   useToast,
 } from "@chakra-ui/react";
 import React from "react";
@@ -17,7 +18,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { handleLogin } from "../Redux/AuthRedux/action";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 export const Login = () => {
   const [show, setShow] = React.useState(false);
@@ -104,6 +105,11 @@ export const Login = () => {
       >
         Login
       </Button>
+      <Text mt='2.5'>Don't have an account yet? <NavLink to='/SignUp' style={{
+        color: 'teal',
+        fontSize : '15px',
+        fontWeight : 'bold'
+      }}>Sign Up</NavLink></Text>
     </Box>
   );
 };
