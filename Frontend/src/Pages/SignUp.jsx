@@ -30,25 +30,27 @@ export const SignUp = () => {
           return navigate('/');
         }
       },)
-    if(error){
-      return toast({
-            title: 'Error',
-            description: "Something went wrong! please try again later",
-            status: 'error',
-            duration: 9000,
-            isClosable: true,
-          })
-    }
-    if(isregister){
-        toast({
-            title: 'successfully Registered',
-            description:"",
-            status: 'success',
-            duration: 9000,
-            isClosable: true,
-          })
-          return navigate('/login')
-    }
+      function handleToast(){
+        if(error){
+          return toast({
+                title: 'Error',
+                description: "Something went wrong! please try again later",
+                status: 'error',
+                duration: 9000,
+                isClosable: true,
+              })
+        }
+        if(isregister){
+            toast({
+                title: 'successfully Registered',
+                description:"",
+                status: 'success',
+                duration: 9000,
+                isClosable: true,
+              })
+              return navigate('/login')
+        }
+      }  
   return (
     <Box boxShadow='rgba(0, 0, 0, 0.35) 0px 5px 15px' width='35%' display='block' margin='auto' marginTop='200px' p='20px' borderRadius='5px'  >
 <FormControl >
@@ -79,6 +81,7 @@ export const SignUp = () => {
         Password : password
     }
     dispatch(handleRegister(obj))
+    handleToast();
   }}>Register</Button>
     </Box>
   )
