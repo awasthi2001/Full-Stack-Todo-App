@@ -23,7 +23,34 @@ export const getAllTodo = async(req,res)=>{
  }
 }
 
-
+export const HandlePatch = async(req,res)=>{
+    try {
+        let {_id} = req.params;
+        // let todo1 = await TodoModel.findById(_id);
+        // let statusp = todo1.status
+        let todo = await TodoModel.findByIdAndUpdate(_id,req.body);
+        return res.status(200).send({
+            message : 'successfully updated'
+        })
+    } catch (error) {
+        return res.status(500).send({
+            message : 'something went wrong'
+           }) 
+    }
+}
+export const HandleDelete = async(req,res)=>{
+    try {
+        let {_id} = req.params;
+        let todo = await TodoModel.findByIdAndDelete(_id);
+        return res.status(200).send({
+            message : 'successfully deleted'
+        })
+    } catch (error) {
+        return res.status(500).send({
+            message : 'something went wrong'
+           }) 
+    }
+}
 export const AddTodo = async(req,res)=>{
     try {
         let todo = req.body;
