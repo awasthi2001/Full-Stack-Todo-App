@@ -26,7 +26,7 @@ export const setTotalCount = (payload)=>{
 
 export const postData = (data,page)=>async(dispatch) => {
     try {
-       let res = await fetch('http://localhost:8080/todos',{
+       let res = await fetch('https://mauve-seal-tie.cyclic.app/todos',{
         //    mode : 'cors',
            method: 'POST',
            body: JSON.stringify(data),
@@ -45,7 +45,7 @@ export const ToggleData = (id,page,status)=>async(dispatch) => {
         status : !status
     }
     try {
-       let res = await fetch(`http://localhost:8080/todos/${id}`,{
+       let res = await fetch(`https://mauve-seal-tie.cyclic.app/todos/${id}`,{
            method: 'PATCH',
            body: JSON.stringify(obj),
            headers: {
@@ -59,7 +59,7 @@ export const ToggleData = (id,page,status)=>async(dispatch) => {
    }
 export const DeleteData = (_id,page)=>async(dispatch) => {
     try {
-       let res = await fetch(`http://localhost:8080/todos/${_id}`,{
+       let res = await fetch(`https://mauve-seal-tie.cyclic.app/todos/${_id}`,{
            method: 'DELETE',
        })
        
@@ -74,7 +74,7 @@ try {
     dispatch(setloading());
 
    let UserToken =  localStorage.getItem('Usertoken')
-    let res = await fetch(`http://localhost:8080/todos/${UserToken}?limit=5&page=${page}`);
+    let res = await fetch(`https://mauve-seal-tie.cyclic.app/todos/${UserToken}?limit=5&page=${page}`);
     let res2 = await res.json();
     // let totalCount = res.headers.get('X-Total-Count')
     // dispatch(setTotalCount(totalCount))

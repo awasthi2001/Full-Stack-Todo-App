@@ -35,7 +35,7 @@ export const setisRegister = (payload)=>{
 export const handleRegister =(data)=>async(dispatch)=>{
     try {
         dispatch(setloading(true));
-       let res = await axios.post('http://localhost:8080/auth/register',data);
+       let res = await axios.post('https://mauve-seal-tie.cyclic.app/auth/register',data);
     //    console.log(res.data.token)
        if(res.data.message=='Successfully created'){      
            dispatch(setisRegister(true));
@@ -53,7 +53,7 @@ export const handleRegister =(data)=>async(dispatch)=>{
 export const handleLogin =(data)=>async(dispatch)=>{
 try {
      dispatch(setloading(true));
-    let res = await axios.post('http://localhost:8080/auth/login',data);
+    let res = await axios.post('https://mauve-seal-tie.cyclic.app/auth/login',data);
     localStorage.setItem('Usertoken',res.data.token)
     localStorage.setItem('User_Id',res.data.User_Id)
     if(res.data.token){
