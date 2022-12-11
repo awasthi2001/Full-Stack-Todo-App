@@ -1,4 +1,5 @@
 import bcryptjs from 'bcryptjs'
+import jwt from 'jsonwebtoken'
 import * as dotenv from 'dotenv'
 import { User } from '../Models/user.model.js'
 dotenv.config()
@@ -27,6 +28,42 @@ export const CreateUser = async(req,res)=>{
             })
         }
     } catch (error) {
-       
+        return res.status(500).send({
+            message : "Something went wrong"
+        })   
+    }
+   }
+
+   export const handleLogin = async(req,res)=>{
+    try {
+        console.log(req.body)
+        let user = req.body;
+        let check = await User.findOne({Email_Id:user.Email_Id});
+        console.log(check)
+        if(check){
+            let password = user.Password;
+            let check2 = bcryptjs.compareSync(password,check.Password);
+            console.log(check2 +"line no.46");
+            if(check2){ 
+                let token = jwt.sign({
+                    Full_Name : user.Full_Name,
+                    Email_Id : user.Email_Id
+                },JWT_SECRET_KEY)
+                return res.status(200).send({
+                    message : 'successfully logged in',
+                    token : token
+                })
+            }else{
+                return res.status(400).send({
+                    message : 'wrong credentials!'
+                })
+            }     
+        }else{
+                return res.status(400).send({
+                    message : 'User not found'
+                })
+        }
+    } catch (error) {
+        
     }
    }
