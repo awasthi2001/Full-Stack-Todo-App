@@ -58,7 +58,7 @@ export const Todo = () => {
             </Button>
             <Button
               size="sm"
-              disabled={page == Math.ceil(totalCount / 5)}
+              disabled={page >= Math.ceil(totalCount / 5)}
               onClick={() => setPage(page + 1)}
               colorScheme="blue"
             >
