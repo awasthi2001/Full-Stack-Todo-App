@@ -32,9 +32,17 @@ export const Login = () => {
   const handleClick = () => setShow(!show);
   useEffect(() => {
     if (isAuth) {
+      toast({
+        title: "Successfully Logged in",
+        description: "",
+        position : "top",
+        status: "success",
+        duration: 9000,
+        isClosable: true,
+      });
       return navigate("/");
     }
-  });
+  },[isAuth]);
 
   const handleLoginClick = () => {
     let obj = {
@@ -42,17 +50,7 @@ export const Login = () => {
       Password: password,
     };
     dispatch(handleLogin(obj));
-    if (isAuth) {
-      toast({
-        title: "successfully Logged in",
-        description: "",
-        status: "success",
-        duration: 9000,
-        isClosable: true,
-      });
-      return navigate("/");
-    }
-    else if(error){
+       if(error){
       toast({
         title: "Error",
         description: "Something went wrong! please try again later",

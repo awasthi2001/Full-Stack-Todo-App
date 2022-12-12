@@ -13,11 +13,17 @@ import {
 import axios from 'axios';
 import React from 'react'
 import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { setisAuth } from '../Redux/AuthRedux/action';
 
 export function AccountDrawer({btnRef,isOpen,onClose,data}) {
    // const { isOpen, onClose } = useDisclosure()
     // const btnRef = React.useRef()
- 
+    let dispatch = useDispatch();
+    const handleLogout = () => {
+      dispatch(setisAuth(false));
+      onClose();
+    };
     return (
       <>
         {/* <Button ref={btnRef} colorScheme='teal' onClick={onOpen}>
@@ -39,10 +45,10 @@ export function AccountDrawer({btnRef,isOpen,onClose,data}) {
             </DrawerBody>
   
             <DrawerFooter>
-              <Button variant='outline' mr={3} onClick={onClose}>
+              <Button colorScheme='blue' mr={3} onClick={onClose}>
                 Back
               </Button>
-              {/* <Button colorScheme='blue'>Save</Button> */}
+              <Button colorScheme='red' onClick={handleLogout}>Log Out</Button>
             </DrawerFooter>
           </DrawerContent>
         </Drawer>

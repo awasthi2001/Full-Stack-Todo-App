@@ -37,10 +37,24 @@ export const SignUp = () => {
   let dispatch = useDispatch();
   const handleClick = () => setShow(!show);
   useEffect(() => {
+    if(isregister){
+      if (isregister) {
+        toast({
+          title: "Successfully Registered",
+          description: "",
+          position: 'top',
+          status: "success",
+          duration: 9000,
+          isClosable: true,
+        });
+        return navigate("/login");
+      }
+    }
     if (isAuth) {
       return navigate("/");
     }
-  });
+
+  },[isregister,isAuth]);
   function handleToast() {
     if (error) {
       return toast({
@@ -50,16 +64,6 @@ export const SignUp = () => {
         duration: 9000,
         isClosable: true,
       });
-    }
-    if (isregister) {
-      toast({
-        title: "successfully Registered",
-        description: "",
-        status: "success",
-        duration: 9000,
-        isClosable: true,
-      });
-      return navigate("/login");
     }
   }
   return (
