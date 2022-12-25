@@ -8,7 +8,7 @@ const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY
 
 export const getUser = async(req,res)=>{
  try {
-    let {token} = req.params;
+      let {token} = req.params;
       let {User_Id} = jwt.verify(token,JWT_SECRET_KEY);
      let user = await User.findById(User_Id)
      user = user.toJSON();
