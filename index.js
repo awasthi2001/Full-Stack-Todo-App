@@ -1,3 +1,5 @@
+import mongoose from "mongoose";
+mongoose.set('strictQuery', true)
 import express from "express";
 import cors from 'cors'
 import { Connectdb } from "./config/db.js";
