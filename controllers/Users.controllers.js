@@ -13,7 +13,6 @@ export const getUser = async(req,res)=>{
      let user = await User.findById(User_Id)
      user = user.toJSON();
      delete user.Password;
-    //  console.log(user+"line no.16");
      return res.send(user);
  } catch (error) {
     return res.status(500).send({

@@ -7,13 +7,11 @@ export const getAllTodo = async(req,res)=>{
  try {
     let {token} = req.params;
     let {User_Id} = jwt.verify(token,JWT_SECRET_KEY);
-    // console.log(User_Id)
     let data = await  TodoModel.find({User_Id});
     const length = await TodoModel.find({User_Id}).count();
     let page = (req.query.page) -1 || 0 ;
     const limit = (req.query.limit) || length;
     data = await TodoModel.find({User_Id}).skip(page*limit).limit(limit).sort({"createdAt":-1})//or skip((page-1)*limit).limit(limit)
-    console.log(data)
     return res.status(200).send({
         data : data,
         count : length
@@ -28,8 +26,6 @@ export const getAllTodo = async(req,res)=>{
 export const HandlePatch = async(req,res)=>{
     try {
         let {_id} = req.params;
-        // let todo1 = await TodoModel.findById(_id);
-        // let statusp = todo1.status
         let todo = await TodoModel.findByIdAndUpdate(_id,req.body);
         return res.status(200).send({
             message : 'successfully updated'
@@ -58,7 +54,6 @@ export const AddTodo = async(req,res)=>{
         let todo = req.body;
        
         let createdtodo = await TodoModel.create(todo);
-        // console.log(createdtodo)
         return res.status(201).send({
             message : 'successfully created',
             todo : createdtodo
