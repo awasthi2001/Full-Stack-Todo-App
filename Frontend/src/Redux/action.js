@@ -24,8 +24,9 @@ export const setTotalCount = (payload)=>{
 }
 
 
-export const postData = (data,page)=>async(dispatch) => {
+export const postData = (data,page,setbtnloading)=>async(dispatch) => {
     try {
+        setbtnloading(true)
        let res = await fetch('https://mauve-seal-tie.cyclic.app/todos',{
         //    mode : 'cors',
            method: 'POST',
@@ -34,6 +35,7 @@ export const postData = (data,page)=>async(dispatch) => {
                 "Content-Type" : 'application/json',
            },
        })
+       setbtnloading(false)
        dispatch(fetchAndUpdate(page))
     } catch (error) {
        console.log(error)

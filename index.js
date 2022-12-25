@@ -20,7 +20,7 @@ app.get('/',(req,res)=>{
         })
     } catch (error) {
         res.status(500).send({
-            message : 'welcome to Todos Application'
+            message : 'Something went wrong please try again'
         })
     }
 

@@ -36,10 +36,8 @@ export const CreateUser = async(req,res)=>{
 
    export const handleLogin = async(req,res)=>{
     try {
-        // console.log(req.body)
         let user = req.body;
         let check = await User.findOne({Email_Id:user.Email_Id});
-        // console.log(check._id);
         if(check){
             let password = user.Password;
             let check2 = bcryptjs.compareSync(password,check.Password);

@@ -15,7 +15,7 @@ export const Todo = () => {
   return (
     <div className="Container">
       <Heading fontSize="30">TODO APP</Heading>
-      <TodoInput page={page} />
+      <TodoInput page={page} loading={loading}/>
       <div id="parentList">
         <Heading fontSize="20" style={{ color: "teal" }}>
           TASKS
