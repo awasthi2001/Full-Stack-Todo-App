@@ -12,6 +12,7 @@ export const getAllTodo = async(req,res)=>{
     let page = (req.query.page) -1 || 0 ;
     const limit = (req.query.limit) || length;
     let filter = req.query.filter
+    filter = {User_Id}
     if(filter==""){
         filter = {User_Id};
     }else if(filter=="true"){
