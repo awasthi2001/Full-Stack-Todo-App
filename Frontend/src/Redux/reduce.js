@@ -1,4 +1,3 @@
-import React from 'react'
 import { SET_DATA, SET_ERROR, SET_LOADING, SET_TOTAL_COUNT } from './actionTypes'
 let initState = {
     loading : false,

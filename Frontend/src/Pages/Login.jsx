@@ -27,7 +27,6 @@ export const Login = () => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   let { loading, error, isAuth } = useSelector((state) => state.Auth);
-  console.log(error+" "+isAuth)
   let dispatch = useDispatch();
   const handleClick = () => setShow(!show);
   useEffect(() => {

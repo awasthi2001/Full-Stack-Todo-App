@@ -4,22 +4,31 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchAndUpdate } from "../Redux/action";
 import { TodoInput } from "./TodoInput";
 import { TodoItems } from "./TodoItems";
-
+import { Select } from "@chakra-ui/react";
 export const Todo = () => {
   const [page, setPage] = useState(1);
+  // const [filterBy,setFilterBy] = useState("");
   let { data, loading, error, totalCount } = useSelector((state) => state.Todo);
   let dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchAndUpdate(page));
+    dispatch(fetchAndUpdate(page,filterBy));
   }, [page]);
+  // const handleFilter = (e)=>{
+  //   setFilterBy(e.target.value)
+  // }
   return (
     <div className="Container">
+     
       <Heading fontSize="30">TODO APP</Heading>
-      <TodoInput page={page} loading={loading}/>
+      <TodoInput page={page} loading={loading} />
       <div id="parentList">
         <Heading fontSize="20" style={{ color: "teal" }}>
           TASKS
         </Heading>
+        {/* <Select placeholder="ALL" width='152px' value={filterBy} onChange={handleFilter}>
+        <option value="true">Completed</option>
+        <option value="false">Not Completed</option>
+      </Select> */}
         {loading ? (
           <img
             style={{ width: "400px", marginLeft: "-20px" }}
