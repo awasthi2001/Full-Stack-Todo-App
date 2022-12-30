@@ -20,7 +20,7 @@ export const getAllTodo = async(req,res)=>{
     }else if(filter=="false"){
         filter = {User_Id,status:false};
     }
-    data = await TodoModel.find({...filter}).skip(page*limit).limit(limit).sort({"createdAt":-1})//or skip((page-1)*limit).limit(limit)
+    data = await TodoModel.find({filter}).skip(page*limit).limit(limit).sort({"createdAt":-1})//or skip((page-1)*limit).limit(limit)
     return res.status(200).send({
         data : data,
         count : length
