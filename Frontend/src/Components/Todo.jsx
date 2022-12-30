@@ -11,7 +11,7 @@ export const Todo = () => {
   let { data, loading, error, totalCount } = useSelector((state) => state.Todo);
   let dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchAndUpdate(page,filterBy));
+    dispatch(fetchAndUpdate(page));
   }, [page]);
   // const handleFilter = (e)=>{
   //   setFilterBy(e.target.value)
